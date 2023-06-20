@@ -14,5 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 // Parse application/json
 app.use(express.json());
 
+// Routes
+app.use('/api/v1/counter', require('./routes/counter'));
 
 app.listen(port, () => console.log(`Servidor a la escucha del puerto ${port}`));
