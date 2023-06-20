@@ -1,10 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const connection = require('./helpers/mongodb');
 require('dotenv').config();
 
 // Port config
 const app = express();
 const port = process.env.PORT || 3000;
+
+// MongoDB connection
+connection();
 
 // Cors middleware
 app.use(cors());
@@ -15,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-app.use('/api/v1/counter', require('./routes/counter'));
+app.use('/api/v1/counter', require('./routes/counterRouter'));
+
 
 app.listen(port, () => console.log(`Servidor a la escucha del puerto ${port}`));
