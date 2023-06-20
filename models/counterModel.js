@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const counterSchema = new Schema({
+const clickSchema = new Schema({
 
     user_id: {
         type: String,
@@ -18,4 +18,4 @@ const counterSchema = new Schema({
 }, { timestamps: true });
 
 
-module.exports = model('Counter', counterSchema);
+module.exports = model('Click', clickSchema);
