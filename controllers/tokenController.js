@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 /**
  * Request an access token.
  * @function getSpotifyToken
