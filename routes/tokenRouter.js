@@ -4,7 +4,7 @@ const router = Router();
 const { getSpotifyToken } = require('../controllers/tokenController');
 
 
-router.post('/', getSpotifyToken);
+router.get('/', getSpotifyToken);
 
 
 module.exports = router;
