@@ -20,6 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/v1/counter', require('./routes/counterRouter'));
+app.use('/api/v1/token', require('./routes/tokenRouter'));
 
 
 app.listen(port, () => console.log(`Servidor a la escucha del puerto ${port}`));
