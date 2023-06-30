@@ -1,5 +1,8 @@
 const { request } = require('../helpers/fetch');
 
+/**
+ * @type {String} The base address of Spotify Web API.
+ */
 const urlBase = 'https://api.spotify.com';
 
 /**
@@ -8,7 +11,7 @@ const urlBase = 'https://api.spotify.com';
  * @async
  * @param {Object} req Request object.
  * @param {Object} res Response object.
- * @returns {Promise}
+ * @returns {Object} JSON.
  */
 const getToken = async (req, res) => {
 
@@ -21,9 +24,9 @@ const getToken = async (req, res) => {
 
         const response = await request(url, 'POST');
 
-        if(response.ok){
+        if(response.ok){ // Conditional: if "response" returns "ok = true"
 
-            const { ok, data } = response;
+            const { ok, data } = response; // Destructuring of properties "ok" and "data" of the object "response".
 
             res.status(200).json({
                 ok,
@@ -52,19 +55,35 @@ const getToken = async (req, res) => {
     };
 };
 
-
+/**
+ * Get a list of the playlists owned or followed by a Spotify user.
+ * @function getUserPlaylists
+ * @async
+ * @param {Object} req Request object.
+ * @param {Object} res Response object.
+ * @returns
+ */
 const getUserPlaylists = async (req, res) => {
 
-    const { user_id } = req.params; // URL user ID.
+    /**
+     * @type {String} User ID.
+     */
+    const { user_id } = req.params;
 
+    /**
+     * @type {String} Authorization header that contains "token_type" (Bearer) and "access_token".
+     */
     const { authorization } = req.headers; // Authorization header with the access token.
 
+    /**
+     * @type {String} Get user's playlists endpoint.
+     */
     const url = `${urlBase}/v1/users/${user_id}/playlists`;
 
 
     try {
         
-        const { ok, data } = await request(url, 'GET', authorization);
+        const { ok, data } = await request(url, 'GET', authorization); // Destructuring of the properties "ok" and "data" of the fetch's response object.
 
         if(ok){
 
