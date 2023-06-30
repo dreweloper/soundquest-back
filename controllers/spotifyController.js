@@ -1,4 +1,7 @@
+const { request } = require('../helpers/fetch');
 const fetch = require('node-fetch');
+
+const urlBase = 'https://api.spotify.com';
 
 /**
  * Request an access token.
@@ -68,6 +71,33 @@ const getToken = async (req, res) => {
 };
 
 
+const getUserPlaylists = async (req, res) => {
+
+    const { user_id } = req.params; // URL user ID.
+
+    const { authorization } = req.headers; // Authorization header with the access token.
+
+    const url = `${urlBase}/v1/users/${user_id}/playlists`;
+
+
+    try {
+        
+        const response = await request(url, 'GET', authorization);
+        
+        console.log(response.status);
+
+    } catch (error) {
+      
+        console.log(error);
+        
+    };
+
+    res.send('Capturando la ruta');
+
+};
+
+
 module.exports = {
-    getToken
+    getToken,
+    getUserPlaylists
 };
