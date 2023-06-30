@@ -17,9 +17,10 @@ const urlBase = 'https://api.spotify.com';
 const getToken = async (req, res) => {
 
     /**
-     * @type {String} The token endpoint URI.
+     * @type {String} Token Spotify endpoint URI.
      */
     const url = 'https://accounts.spotify.com/api/token';
+
 
     try {
 
@@ -79,7 +80,7 @@ const getUserPlaylists = async (req, res) => {
     const { authorization } = req.headers;
 
     /**
-     * @type {String} Get user's playlists endpoint.
+     * @type {String} Get user's playlists Spotify endpoint.
      */
     const url = `${urlBase}/v1/users/${user_id}/playlists`;
 
@@ -150,9 +151,10 @@ const getPlaylist = async (req, res) => {
     const { authorization } = req.headers;
 
     /**
-     * @type {String} Get playlist Endpoint.
+     * @type {String} Get playlist Spotify endpoint.
      */
     const url = `${urlBase}/v1/playlists/${playlist_id}`;
+
 
     try {
         
@@ -199,9 +201,71 @@ const getPlaylist = async (req, res) => {
 
 }; //!GETPLAYLIST
 
+/**
+ * Get Spotify catalog information for a single track identified by its unique Spotify ID.
+ * @function getTrack
+ * @async
+ * @param {Object} req Request object.
+ * @param {Object} res Response object.
+ * @returns
+ */
+const getTrack = async (req, res) => {
+
+    /**
+     * @type {String} Track ID.
+     */
+    const { track_id } = req.params;
+
+    /**
+     * @type {String} Authorization header that contains "token_type" (Bearer) and "access_token".
+     */
+    const { authorization } = req.headers;
+
+    /**
+     * @type {String} Get track Spotify endpoint.
+     */
+    const url = `${urlBase}/v1/tracks/${track_id}`;
+
+
+    try {
+      
+        const { ok, data } = await request(url, 'GET', authorization);
+
+        if(ok){
+
+            res.status(200).json({
+                ok,
+                data
+            });
+
+        } else {
+
+            const { error } = data;
+
+            res.status(error.status).json({
+                ok,
+                error
+            });
+
+        };
+
+    } catch (error) {
+        
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Oops! Something went wrong on our server. We are working to solve the problem as soon as possible. Sorry for the inconvenience.',
+        })
+
+    };
+
+}; //!GETTRACK
+
 
 module.exports = {
     getToken,
     getUserPlaylists,
-    getPlaylist
+    getPlaylist,
+    getTrack
 };

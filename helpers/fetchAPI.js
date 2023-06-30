@@ -1,5 +1,14 @@
 const fetch = require('node-fetch');
 
+/**
+ * Fetch function that connects with Spotify's API and MongoDB.
+ * @function request
+ * @async
+ * @param {String} url Spotify's endpoint.
+ * @param {String} method HTTP verb for the request.
+ * @param {String} token Authorization header's value that contains "token_type" (Bearer) and "access_token".
+ * @returns {Promise}
+ */
 const request = async (url, method, token) => {
 
     /**
@@ -50,6 +59,7 @@ const request = async (url, method, token) => {
                 ok: false,
                 data
             };
+
         };
 
     } catch (error) {
@@ -58,7 +68,9 @@ const request = async (url, method, token) => {
             ok: false,
             error
         };
+
     };
+
 };
 
 
