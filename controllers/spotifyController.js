@@ -64,18 +64,31 @@ const getUserPlaylists = async (req, res) => {
 
     try {
         
-        const response = await request(url, 'GET', authorization);
-        
-        console.log(response.status);
+        const { ok, data } = await request(url, 'GET', authorization);
 
+        if(ok){
+
+            res.status(200).json({ ok, data });
+
+        } else {
+
+            const { error } = data;
+
+            res.status(error.status).json({
+                ok,
+                error
+            });
+        };
+        
     } catch (error) {
-      
+
         console.log(error);
-        
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Oops! Something went wrong on our server. We are working to solve the problem as soon as possible. Sorry for the inconvenience.',
+        });        
     };
-
-    res.send('Capturando la ruta');
-
 };
 
 

@@ -43,6 +43,13 @@ const request = async (url, method, token) => {
                 ok: true,
                 data
             };
+
+        } else {
+
+            return {
+                ok: false,
+                data
+            };
         };
 
     } catch (error) {
