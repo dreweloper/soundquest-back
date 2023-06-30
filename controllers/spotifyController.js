@@ -235,7 +235,13 @@ const getTrack = async (req, res) => {
 
             res.status(200).json({
                 ok,
-                data
+                track: {
+                    album: data.album.name,
+                    image: data.album.images[0].url,
+                    artist: data.artists[0].name,
+                    name: data.name,
+                    url: data.external_urls.spotify
+                }
             });
 
         } else {
