@@ -2,13 +2,13 @@ const fetch = require('node-fetch');
 
 /**
  * Request an access token.
- * @function getSpotifyToken
+ * @function getToken
  * @async
  * @param {Object} req Request object.
  * @param {Object} res Response object.
  * @returns {Promise}
  */
-const getSpotifyToken = async (req, res) => {
+const getToken = async (req, res) => {
 
     /**
      * @type {String} The token endpoint URI.
@@ -68,4 +68,6 @@ const getSpotifyToken = async (req, res) => {
 };
 
 
-module.exports = { getSpotifyToken };
+module.exports = {
+    getToken
+};
