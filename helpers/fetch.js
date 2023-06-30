@@ -35,12 +35,22 @@ const request = async (url, method, token) => {
         
         const response = await fetch(url, options);
 
-        return response;
+        const data = await response.json();
+
+        if(response.status == 200){
+
+            return {
+                ok: true,
+                data
+            };
+        };
 
     } catch (error) {
-        
-        console.log(error);
 
+        return {
+            ok: false,
+            error
+        };
     };
 };
 

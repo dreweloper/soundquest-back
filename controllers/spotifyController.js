@@ -21,20 +21,22 @@ const getToken = async (req, res) => {
 
         const response = await request(url, 'POST');
 
-        const data = await response.json();
+        if(response.ok){
 
-        if(response.status == 200){
+            const { ok, data } = response;
 
             res.status(200).json({
-                ok: true,
+                ok,
                 data
             });
 
         } else {
 
-            res.status(response.status).json({
-                ok: false,
-                error: data
+            const { ok, error } = response;
+
+            res.status(400).json({
+                ok,
+                error
             });
 
         };
@@ -47,9 +49,7 @@ const getToken = async (req, res) => {
             ok: false,
             msg: 'Oops! Something went wrong on our server. We are working to solve the problem as soon as possible. Sorry for the inconvenience.',
         });
-
     };
-
 };
 
 
