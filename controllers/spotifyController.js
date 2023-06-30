@@ -1,5 +1,4 @@
 const { request } = require('../helpers/fetch');
-const fetch = require('node-fetch');
 
 const urlBase = 'https://api.spotify.com';
 
@@ -18,41 +17,24 @@ const getToken = async (req, res) => {
      */
     const url = 'https://accounts.spotify.com/api/token';
 
-    /**
-     * Fetch options.
-     * @typedef {Object} options
-     * @property {String} method HTTP verb for the request.
-     * @property {Object} body URLSearchParams object that contains the Client ID and Client Secret, along with the grant_type parameter set to client_credentials.
-     * @property {Object} headers Content-type header set to the application/x-www-form-urlencoded value.
-     */
-    const options = {
-        method: 'POST',
-        body: new URLSearchParams({
-            'grant_type': 'client_credentials',
-            'client_id': process.env.CLIENT_ID,
-            'client_secret': process.env.CLIENT_SECRET
-        }),
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    };
-
     try {
 
-        const request = await fetch(url, options);
+        const response = await request(url, 'POST');
 
-        const response = await request.json();
+        const data = await response.json();
 
-        if(request.status == 200){
+        if(response.status == 200){
 
             res.status(200).json({
                 ok: true,
-                data: response
+                data
             });
 
         } else {
 
-            res.status(request.status).json({
+            res.status(response.status).json({
                 ok: false,
-                error: response
+                error: data
             });
 
         };
