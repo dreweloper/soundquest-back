@@ -26,7 +26,7 @@ const request = async (url, method, token) => {
 
     if(method == 'GET'){
         options = {
-            headers: { Authentication: token }
+            headers: { Authorization: token }
         }
     };
 

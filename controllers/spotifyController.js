@@ -79,7 +79,7 @@ const getUserPlaylists = async (req, res) => {
                 error
             });
         };
-        
+
     } catch (error) {
 
         console.log(error);
