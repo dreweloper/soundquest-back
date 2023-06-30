@@ -1,4 +1,5 @@
-const { request } = require('../helpers/fetch');
+const { request } = require('../helpers/fetchAPI');
+const { randomly } = require('../helpers/randomElement');
 
 /**
  * @type {String} The base address of Spotify Web API.
@@ -53,7 +54,7 @@ const getToken = async (req, res) => {
             msg: 'Oops! Something went wrong on our server. We are working to solve the problem as soon as possible. Sorry for the inconvenience.',
         });
     };
-};
+}; //!GETTOKEN
 
 /**
  * Get a list of the playlists owned or followed by a Spotify user.
@@ -73,7 +74,7 @@ const getUserPlaylists = async (req, res) => {
     /**
      * @type {String} Authorization header that contains "token_type" (Bearer) and "access_token".
      */
-    const { authorization } = req.headers; // Authorization header with the access token.
+    const { authorization } = req.headers;
 
     /**
      * @type {String} Get user's playlists endpoint.
@@ -87,11 +88,21 @@ const getUserPlaylists = async (req, res) => {
 
         if(ok){
 
-            res.status(200).json({ ok, data });
+            /**
+             * @type {Array} It contains an object with information for each playlist.
+             */
+            const { items } = data; // Destructuring of the property "items" of the "data" object.
+
+            /**
+             * @type {String} The Spotify ID for the playlist.
+             */
+            const playlist_id = randomly(items);
+
+            res.status(200).json({ ok, playlist_id });
 
         } else {
 
-            const { error } = data;
+            const { error } = data; // Destructuring of the property "error" of the "data" object.
 
             res.status(error.status).json({
                 ok,
@@ -108,7 +119,7 @@ const getUserPlaylists = async (req, res) => {
             msg: 'Oops! Something went wrong on our server. We are working to solve the problem as soon as possible. Sorry for the inconvenience.',
         });        
     };
-};
+}; //!GETUSERPLAYLISTS
 
 
 module.exports = {
