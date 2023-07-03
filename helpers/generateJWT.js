@@ -11,7 +11,7 @@ const generateJWT = async (payload) => {
 
     try {
         
-        return jwt.sign( payload, process.env.JWT_SECRET_KEY, { expiresIn: 3600 });
+        return await jwt.sign( payload, process.env.JWT_SECRET_KEY, { expiresIn: 3600 });
 
     } catch (error) {
         
