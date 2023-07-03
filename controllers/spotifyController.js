@@ -31,11 +31,11 @@ const getToken = async (req, res) => {
 
             const { ok, data } = response; // Destructuring of properties "ok" and "data" of the object "response".
 
-            const token = await generateJWT(data); // "data" encoded with JWT.
+            // const token = await generateJWT(data); // "data" encoded with JWT.
 
             res.status(200).json({
                 ok,
-                token
+                data
             });
 
         } else {
