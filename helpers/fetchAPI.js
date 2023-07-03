@@ -16,7 +16,7 @@ const request = async (url, method, token) => {
      * @typedef {Object} options
      * @property {String} method HTTP verb for the request.
      * @property {Object} body URLSearchParams object that contains the Client ID and Client Secret, along with the grant_type parameter set to client_credentials.
-     * @property {Object} headers Content-type header set to the application/x-www-form-urlencoded value or 'Authentication: Bearer token'.
+     * @property {Object} headers Content-type header set to the application/x-www-form-urlencoded value or Authentication header set to token type "Bearer" and the token itself.
      */
     let options = {};
 
