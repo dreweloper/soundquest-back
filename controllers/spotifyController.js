@@ -1,4 +1,5 @@
 const { request } = require('../helpers/fetchAPI');
+const { generateJWT } = require('../helpers/generateJWT');
 const { randomPlaylist, randomTrack } = require('../helpers/randomElement');
 
 /**
@@ -30,9 +31,11 @@ const getToken = async (req, res) => {
 
             const { ok, data } = response; // Destructuring of properties "ok" and "data" of the object "response".
 
+            const token = await generateJWT(data); // "data" encoded with JWT.
+
             res.status(200).json({
                 ok,
-                data
+                token
             });
 
         } else {
