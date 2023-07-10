@@ -1,14 +1,14 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getCount, addToCounter } = require('../controllers/tracksController');
+const { getTracks, addTrack } = require('../controllers/tracksController');
 
 
 // Get count.
-router.get('/', getCount);
+router.get('/', getTracks);
 
 // Add to counter.
-router.post('/', addToCounter);
+router.post('/', addTrack);
 
 
 module.exports = router;

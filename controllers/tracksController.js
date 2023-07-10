@@ -1,14 +1,14 @@
 const Track = require('../models/trackModel');
 
 /**
- * Obtiene todos los documentos de la colección 'clicks' de la base de datos 'counter' de MongoDB.
- * @function getCount
+ * The function fetches all documents in the 'tracks' collection from the MongoDB 'soundquest' database.
+ * @function getTracks
  * @async
- * @param {Object} req Recibe el objeto de la solicitud.
- * @param {Object} res Recibe el objeto de la respuesta.
+ * @param {Object} req Receives the request object.
+ * @param {Object} res Receives the response object.
  * @returns {Promise}
  */
-const getCount = async (req, res) => {
+const getTracks = async (req, res) => {
 
     try {
 
@@ -29,28 +29,28 @@ const getCount = async (req, res) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador',
+            msg: 'Error: contacte con el administrador'
         });
         
     };
 
-}; //!GETCOUNT
+}; //!GETTRACKS
 
 /**
- * Añade un nuevo documento con los datos recibidos a través del objeto 'body' a la colección 'clicks' de la base de datos 'counter' de MongoDB.
- * @function addToCounter
+ * The function adds a new document with the data received through the 'body' object to the 'tracks' collection of the MongoDB 'soundquest' database.
+ * @function addTrack
  * @async
- * @param {Object} req Recibe el objeto de la solicitud: body.
- * @param {Object} res Recibe el objeto de la respuesta.
+ * @param {Object} req Receives the request object: body.
+ * @param {Object} res Receives the response object.
  * @returns {Promise}
  */
-const addToCounter = async (req, res) => {
+const addTrack = async (req, res) => {
 
-    const click = new Track(req.body); // 'req.body' recibe las propiedades requeridas por el modelo 'counterModel'.
+    const newTrack = new Track(req.body); // 'req.body' receives the required properties of 'trackModel'.
 
     try {
 
-        const request = await click.save();
+        const request = await newTrack.save();
 
         if(request){
 
@@ -67,15 +67,16 @@ const addToCounter = async (req, res) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador'
+            msg: 'Error: contacte con el administrador',
+            error
         });
 
     };
 
-}; //!ADDTOCOUNTER
+}; //!ADDTRACK
 
 
 module.exports = {
-    getCount,
-    addToCounter
+    getTracks,
+    addTrack
 };
