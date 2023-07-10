@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-app.use('/api/v1/counter', require('./routes/counterRouter')); // MongoDB API
-app.use('/api/v1/spotify', require('./routes/spotifyRouter')); // Spotify API
+app.use('/api/v1/tracks', require('./routers/tracksRouter')); // MongoDB API
+app.use('/api/v1/spotify', require('./routers/spotifyRouter')); // Spotify API
 
 
 app.listen(port, () => console.log(`Servidor a la escucha del puerto ${port}`));
