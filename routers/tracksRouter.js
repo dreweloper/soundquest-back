@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getCount, addToCounter } = require('../controllers/counterController');
+const { getCount, addToCounter } = require('../controllers/tracksController');
 
 
 // Get count.

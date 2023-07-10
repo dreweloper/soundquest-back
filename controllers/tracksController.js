@@ -1,4 +1,4 @@
-const Counter = require('../models/counterModel');
+const Track = require('../models/trackModel');
 
 /**
  * Obtiene todos los documentos de la colección 'clicks' de la base de datos 'counter' de MongoDB.
@@ -12,7 +12,7 @@ const getCount = async (req, res) => {
 
     try {
 
-        const response = await Counter.find();
+        const response = await Track.find();
 
         if(response){
 
@@ -46,7 +46,7 @@ const getCount = async (req, res) => {
  */
 const addToCounter = async (req, res) => {
 
-    const click = new Counter(req.body); // 'req.body' recibe las propiedades requeridas por el modelo 'counterModel'.
+    const click = new Track(req.body); // 'req.body' recibe las propiedades requeridas por el modelo 'counterModel'.
 
     try {
 
