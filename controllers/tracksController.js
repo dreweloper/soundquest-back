@@ -47,6 +47,7 @@ const getTracks = async (req, res) => {
 const addTrack = async (req, res) => {
 
     const newTrack = new Track(req.body); // 'req.body' receives the required properties of 'trackModel'.
+    
 
     try {
 
