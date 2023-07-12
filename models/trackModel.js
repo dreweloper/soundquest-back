@@ -2,9 +2,15 @@ const { Schema, model } = require('mongoose');
 
 const trackSchema = new Schema({
 
-    playlist_id: {
-        type: String,
-        required: true
+    playlist: {
+        playlist_id: {
+            type: String,
+            required: true
+        },
+        playlist_url: {
+            type: String,
+            required: true
+        }
     },
     track: {
         track_id: {
@@ -23,11 +29,11 @@ const trackSchema = new Schema({
             type: String,
             required: true
         },
-        image: {
+        artwork: {
             type: String,
             required: true
         },
-        url: {
+        track_url: {
             type: String,
             required: true
         }
