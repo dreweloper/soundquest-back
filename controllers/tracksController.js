@@ -14,11 +14,18 @@ const getTracks = async (req, res) => {
 
         const response = await Track.find();
 
-        if(response){
+        if(response.length > 0){
 
             res.status(200).json({
                 ok: true,
                 response
+            });
+
+        } else {
+
+            res.status(400).json({
+                ok: false,
+                msg: 'No hay documentos guardados en la base de datos.'
             });
 
         };
@@ -29,7 +36,8 @@ const getTracks = async (req, res) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador'
+            msg: 'Error: contacte con el administrador.',
+            error
         });
         
     };
@@ -53,7 +61,14 @@ const addTrack = async (req, res) => {
 
         const request = await newTrack.save();
 
-        if(request){
+        if(!request){
+
+            res.status(400).json({
+                ok: false,
+                msg: 'Error: no se ha podido guardar el documento en la base de datos.'
+            });
+
+        } else {
 
             res.status(201).json({
                 ok: true,
@@ -68,7 +83,7 @@ const addTrack = async (req, res) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador',
+            msg: 'Error: contacte con el administrador.',
             error
         });
 
@@ -76,8 +91,56 @@ const addTrack = async (req, res) => {
 
 }; //!ADDTRACK
 
+/**
+ * The function deletes by ID a document from the "tracks" collection of the MongoDB "soundquest" database.
+ * @function deleteTrack
+ * @async
+ * @param {Object} req Receives the request object: params.
+ * @param {Object} res Receives the response object.
+ * @returns {Promise}
+ */
+const deleteTrack = async (req, res) => {
+
+    const id = req.params.id; // Value of '_id' to query by.
+
+
+    try {
+        
+        const request = await Track.findByIdAndDelete(id);
+
+        if(!request){
+
+            res.status(400).json({
+                ok: false,
+                msg: `Error: no se ha podido eliminar el documento con ID ${id}.`
+            });
+
+        } else {
+
+            res.status(200).json({
+                ok: true,
+                data: request
+            });
+
+        };
+
+    } catch (error) {
+        
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Error: contacte con el administrador.',
+            error
+        });
+
+    };
+
+}; //!DELETETRACK
+
 
 module.exports = {
     getTracks,
-    addTrack
+    addTrack,
+    deleteTrack
 };
