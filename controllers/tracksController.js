@@ -14,11 +14,18 @@ const getTracks = async (req, res) => {
 
         const response = await Track.find();
 
-        if(response){
+        if(response.length > 0){
 
             res.status(200).json({
                 ok: true,
                 response
+            });
+
+        } else {
+
+            res.status(400).json({
+                ok: false,
+                msg: 'No hay documentos guardados en la base de datos.'
             });
 
         };
@@ -54,7 +61,14 @@ const addTrack = async (req, res) => {
 
         const request = await newTrack.save();
 
-        if(request){
+        if(!request){
+
+            res.status(400).json({
+                ok: false,
+                msg: 'Error: no se ha podido guardar el documento en la base de datos.'
+            });
+
+        } else {
 
             res.status(201).json({
                 ok: true,
