@@ -1,14 +1,21 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getTracks, addTrack } = require('../controllers/tracksController');
+const {
+    getTracks,
+    addTrack,
+    deleteTrack
+} = require('../controllers/tracksController');
 
 
-// Get count.
+// Get all tracks saved in MongoDB.
 router.get('/', getTracks);
 
-// Add to counter.
+// Add track to MongoDB.
 router.post('/', addTrack);
+
+// Delete track of MongoDB.
+router.delete('/:id', deleteTrack);
 
 
 module.exports = router;
