@@ -3,13 +3,17 @@ const router = Router();
 
 const {
     getTracks,
+    getTrackByID,
     addTrack,
     deleteTrack
 } = require('../controllers/tracksController');
 
 
-// Get all tracks saved in MongoDB.
+// Gets all tracks saved in MongoDB.
 router.get('/', getTracks);
+
+// Gets track by 'track_id' from MongoDB.
+router.get('/:id', getTrackByID);
 
 // Add track to MongoDB.
 router.post('/', addTrack);
