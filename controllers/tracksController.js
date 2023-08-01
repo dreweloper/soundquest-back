@@ -18,7 +18,7 @@ const getTracks = async (req, res) => {
 
             res.status(200).json({
                 ok: true,
-                response
+                data: response
             });
 
         } else {
