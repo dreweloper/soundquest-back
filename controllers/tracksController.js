@@ -1,6 +1,14 @@
 const Track = require('../models/trackModel');
 
 /**
+ * Handles and logs errors that occur during the function's execution.
+ * @typedef {Object} ErrorObject
+ * @property {Boolean} ok - Indicates if the request was successful (false).
+ * @property {String} msg - A generic error message instructing the client to contact the administrator.
+ * @property {Object} error - The error object caught during the catch block.
+ */
+
+/**
  * The function fetches all documents in the 'tracks' collection from the MongoDB 'soundquest' database.
  * @function getTracks
  * @async
@@ -14,7 +22,7 @@ const getTracks = async (req, res) => {
 
         const response = await Track.find();
 
-        if(response.length > 0){
+        if (response.length > 0) {
 
             res.status(200).json({
                 ok: true,
@@ -29,23 +37,26 @@ const getTracks = async (req, res) => {
             });
 
         };
-        
+
     } catch (error) {
 
         console.log(error);
 
+        /**
+         * @type {ErrorObject}
+         */
         res.status(500).json({
             ok: false,
             msg: 'Error: contacte con el administrador.',
             error
         });
-        
+
     };
 
 }; //!GETTRACKS
 
 /**
- * Retrieve a track from the database based on the given track ID.
+ * Retrieve a track from MongoDB based on the given track ID.
  * @function getTrackByID
  * @async
  * @param {Object} req The request object containing information about the incoming HTTP request.
@@ -60,59 +71,42 @@ const getTrackByID = async (req, res) => {
      */
     const { id } = req.params;
 
-    
     try {
-      
-        /**
-         * Retrieve all tracks from the MongoDB collection 'Track'.
-         * @type {Array<Object>}
-         */
-        const response = await Track.find();
 
         /**
-         * Find the track with the given ID in the response array.
-         * @type {Object}
+         * Retrieve a track using its track ID.
+         * @function
+         * @async
+         * @param {String} id - The track ID to search for.
+         * @returns {Promise<Array<Object>>|Promise<Array<[]>>} A promise that resolves to an array containing the retrieved track or an empty array if the track is not found.
          */
-        const track = response.find(item => item.track.track_id == id);
+        const response = await Track.find(
+            { "track.track_id": id },
+            { "createdAt": 0, "updatedAt": 0, "__v": 0 }
+        ).limit(1); // Returns the first document that matches the search criteria.
 
-        if(track){
+        if (response.length == 0) { // The track is not present in MongoDB.
 
-            /**
-             * Send a successful response with the track information.
-             * @type {Object}
-             * @property {Boolean} ok - Indicates if the request was successful (true).
-             * @property {Object} data - Contains the track information.
-             */
-            res.status(200).json({
-                ok: true,
-                data: track
-            });
-
-        } else {
-
-            /**
-             * Send an error response if the track is not found in the database.
-             * @type {Object}
-             * @property {Boolean} ok - Indicates if the request was successful (false).
-             * @property {String} msg - Error message indicating that the track doesn't exist in the database.
-             */
             res.status(400).json({
                 ok: false,
                 msg: `El track con ID ${id} no existe en la base de datos.`
             });
 
+        } else { // The track is present in MongoDB.
+
+            res.status(200).json({
+                ok: true,
+                data: response
+            });
+
         };
-        
+
     } catch (error) {
-        
+
         console.log(error);
 
         /**
-         * Handle and log errors that occur during the function's execution.
-         * @type {Object}
-         * @property {Boolean} ok - Indicates if the request was successful (false).
-         * @property {String} msg - Generic error message instructing the client to contact the administrator.
-         * @property {Object} error - The error object caught during the catch block.
+         * @type {ErrorObject}
          */
         res.status(500).json({
             ok: false,
@@ -135,13 +129,13 @@ const getTrackByID = async (req, res) => {
 const addTrack = async (req, res) => {
 
     const newTrack = new Track(req.body); // 'req.body' receives the required properties of 'trackModel'.
-    
+
 
     try {
 
         const request = await newTrack.save();
 
-        if(!request){
+        if (!request) {
 
             res.status(400).json({
                 ok: false,
@@ -158,9 +152,12 @@ const addTrack = async (req, res) => {
         };
 
     } catch (error) {
-        
+
         console.log(error);
 
+        /**
+         * @type {ErrorObject}
+         */
         res.status(500).json({
             ok: false,
             msg: 'Error: contacte con el administrador.',
@@ -185,10 +182,10 @@ const deleteTrack = async (req, res) => {
 
 
     try {
-        
+
         const request = await Track.findByIdAndDelete(id);
 
-        if(!request){
+        if (!request) {
 
             res.status(400).json({
                 ok: false,
@@ -205,9 +202,12 @@ const deleteTrack = async (req, res) => {
         };
 
     } catch (error) {
-        
+
         console.log(error);
 
+        /**
+         * @type {ErrorObject}
+         */
         res.status(500).json({
             ok: false,
             msg: 'Error: contacte con el administrador.',
