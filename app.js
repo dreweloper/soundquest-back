@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 // Parse application/json
 app.use(express.json());
 
-// Routes
-app.use('/api/v1/tracks', require('./routers/tracksRouter')); // MongoDB API
-app.use('/api/v1/spotify', require('./routers/spotifyRouter')); // Spotify API
+// ROUTES
+// Route to connect to the 'soundquest' database and interact with the 'tracks' collection in MongoDB.
+app.use('/api/v1/tracks', require('./routers/tracksRouter'));
 
 
 app.listen(port, () => console.log(`Servidor a la escucha del puerto ${port}`));
