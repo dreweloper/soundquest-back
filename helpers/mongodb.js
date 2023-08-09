@@ -6,21 +6,22 @@ const connection = async () => {
 
         const response = await mongoose.connect(process.env.URI_CONNECT);
 
-        if(response){
+        console.log('Connected to MongoDB.');
 
-            console.log('Conectado a MongoDB');
+        return response;
 
-            return response;
-
-        };
-        
     } catch (error) {
 
         console.log(error);
 
+        return {
+            ok: false,
+            msg: 'Failed to connect to MongoDB.',
+            error
+        };
+
     };
 
-}; //!CONNECTION
-
+};
 
 module.exports = connection;
