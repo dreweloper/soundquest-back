@@ -47,13 +47,66 @@ const getTracks = async (req, res) => {
          */
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador.',
+            msg: 'Internal server error. Something went wrong while processing your request.',
             error
         });
 
     };
 
 }; //!GETTRACKS
+
+/**
+ * Estimates the number of documents in the MongoDB 'tracks' collection.
+ * @function getTracksCount
+ * @async
+ * @param {Object} req The request object containing information about the incoming HTTP request.
+ * @param {Object} res The response object used to send back an HTTP response to the client.
+ * @returns {Promise<void>} The function doesn't return a value directly but sends a response to the client.
+ */
+const getTracksCount = async (req, res) => {
+
+    try {
+
+        /**
+         * Estimates the number of documents in the MongoDB 'tracks' collection.
+         * @function
+         * @async
+         * @returns {Promise<Number>}
+         */
+        const response = await Track.estimatedDocumentCount();
+
+        if(response){
+
+            res.status(200).json({
+                ok: true,
+                data: response
+            });
+
+        } else {
+
+            res.status(400).json({
+                ok: false,
+                msg: 'Bad request. Unable to estimate the number of documents in the tracks collection.'
+            });
+
+        };
+
+    } catch (error) {
+
+        console.log(error);
+
+        /**
+         * @type {ErrorObject}
+         */
+        res.status(500).json({
+            ok: false,
+            msg: 'Internal server error. Something went wrong while processing your request.',
+            error
+        });
+
+    };
+
+}; //!GETTRACKSCOUNT
 
 /**
  * Retrieve a track from MongoDB based on the given track ID.
@@ -110,7 +163,7 @@ const getTrackByID = async (req, res) => {
          */
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador.',
+            msg: 'Internal server error. Something went wrong while processing your request.',
             error
         });
 
@@ -160,7 +213,7 @@ const addTrack = async (req, res) => {
          */
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador.',
+            msg: 'Internal server error. Something went wrong while processing your request.',
             error
         });
 
@@ -210,7 +263,7 @@ const deleteTrack = async (req, res) => {
          */
         res.status(500).json({
             ok: false,
-            msg: 'Error: contacte con el administrador.',
+            msg: 'Internal server error. Something went wrong while processing your request.',
             error
         });
 
@@ -221,6 +274,7 @@ const deleteTrack = async (req, res) => {
 
 module.exports = {
     getTracks,
+    getTracksCount,
     getTrackByID,
     addTrack,
     deleteTrack
