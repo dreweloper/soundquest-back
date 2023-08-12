@@ -2,6 +2,16 @@ const { Schema, model } = require('mongoose');
 
 const trackSchema = new Schema({
 
+    host: {
+        username: {
+            type: String,
+            required: true
+        },
+        profile_url: {
+            type: String,
+            required: true
+        }
+    },
     playlist: {
         playlist_id: {
             type: String,
