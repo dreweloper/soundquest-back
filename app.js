@@ -21,6 +21,8 @@ app.use(express.json());
 // ROUTES
 // Route to connect to the 'soundquest' database and interact with the 'tracks' collection in MongoDB.
 app.use('/api/v1', require('./routers/tracksRouter'));
+// Route to connect to the 'soundquest' database and interact with the 'visits' collection in MongoDB.
+app.use('/api/v1/visits', require('./routers/visitsRouter'));
 
 
 app.listen(port, () => console.log(`Server started on port ${port}.`));
