@@ -38,7 +38,7 @@ const addVisit = async (req, res) => {
                 msg: 'Bad request. The provided data is invalid or incomplete.'
             });
 
-        }
+        };
 
     } catch (error) {
         
