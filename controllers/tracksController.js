@@ -31,9 +31,9 @@ const getTracks = async (req, res) => {
 
         } else {
 
-            res.status(400).json({
+            res.status(200).json({
                 ok: false,
-                msg: 'No hay documentos guardados en la base de datos.'
+                msg: 'There are no tracks saved in the database.'
             });
 
         };
@@ -54,59 +54,6 @@ const getTracks = async (req, res) => {
     };
 
 }; //!GETTRACKS
-
-/**
- * Estimates the number of documents in the MongoDB 'tracks' collection.
- * @function getTracksCount
- * @async
- * @param {Object} req The request object containing information about the incoming HTTP request.
- * @param {Object} res The response object used to send back an HTTP response to the client.
- * @returns {Promise<void>} The function doesn't return a value directly but sends a response to the client.
- */
-const getTracksCount = async (req, res) => {
-
-    try {
-
-        /**
-         * Estimates the number of documents in the MongoDB 'tracks' collection.
-         * @function
-         * @async
-         * @returns {Promise<Number>}
-         */
-        const response = await Track.estimatedDocumentCount();
-
-        if(response){
-
-            res.status(200).json({
-                ok: true,
-                data: response
-            });
-
-        } else {
-
-            res.status(400).json({
-                ok: false,
-                msg: 'Bad request. Unable to estimate the number of documents in the tracks collection.'
-            });
-
-        };
-
-    } catch (error) {
-
-        console.log(error);
-
-        /**
-         * @type {ErrorObject}
-         */
-        res.status(500).json({
-            ok: false,
-            msg: 'Internal server error. Something went wrong while processing your request.',
-            error
-        });
-
-    };
-
-}; //!GETTRACKSCOUNT
 
 /**
  * Retrieve a track from MongoDB based on the given track ID.
@@ -140,9 +87,9 @@ const getTrackByID = async (req, res) => {
 
         if (response.length == 0) { // The track is not present in MongoDB.
 
-            res.status(400).json({
+            res.status(200).json({
                 ok: false,
-                msg: `El track con ID ${id} no existe en la base de datos.`
+                msg: `The track with ID ${id} does not exist in the database.`
             });
 
         } else { // The track is present in MongoDB.
@@ -172,6 +119,48 @@ const getTrackByID = async (req, res) => {
 }; //!GETTRACKBYID
 
 /**
+ * Estimates the number of documents in the MongoDB 'tracks' collection.
+ * @function getTracksCount
+ * @async
+ * @param {Object} req The request object containing information about the incoming HTTP request.
+ * @param {Object} res The response object used to send back an HTTP response to the client.
+ * @returns {Promise<void>} The function doesn't return a value directly but sends a response to the client.
+ */
+const getTracksCount = async (req, res) => {
+
+    try {
+
+        /**
+         * Estimates the number of documents in the MongoDB 'tracks' collection.
+         * @function
+         * @async
+         * @returns {Promise<Number>}
+         */
+        const response = await Track.estimatedDocumentCount();
+
+        res.status(200).json({
+            ok: true,
+            data: response
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        /**
+         * @type {ErrorObject}
+         */
+        res.status(500).json({
+            ok: false,
+            msg: 'Internal server error. Something went wrong while processing your request.',
+            error
+        });
+
+    };
+
+}; //!GETTRACKSCOUNT
+
+/**
  * The function adds a new document with the data received through the 'body' object to the 'tracks' collection of the MongoDB 'soundquest' database.
  * @function addTrack
  * @async
@@ -186,20 +175,20 @@ const addTrack = async (req, res) => {
 
     try {
 
-        const request = await newTrack.save();
+        const response = await newTrack.save();
 
-        if (!request) {
+        if (response) {
 
-            res.status(400).json({
-                ok: false,
-                msg: 'Error: no se ha podido guardar el documento en la base de datos.'
+            res.status(201).json({
+                ok: true,
+                data: response
             });
 
         } else {
 
-            res.status(201).json({
-                ok: true,
-                data: request
+            res.status(400).json({
+                ok: false,
+                msg: 'The track could not be saved in the database.'
             });
 
         };
@@ -242,7 +231,7 @@ const deleteTrack = async (req, res) => {
 
             res.status(400).json({
                 ok: false,
-                msg: `Error: no se ha podido eliminar el documento con ID ${id}.`
+                msg: `The track with ID ${id} could not be deleted from the database.`
             });
 
         } else {
