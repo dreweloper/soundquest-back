@@ -31,7 +31,7 @@ const getTracks = async (req, res) => {
 
         } else {
 
-            res.status(200).json({
+            res.status(404).json({
                 ok: false,
                 msg: 'There are no tracks saved in the database.'
             });
@@ -87,7 +87,7 @@ const getTrackByID = async (req, res) => {
 
         if (response.length == 0) { // The track is not present in MongoDB.
 
-            res.status(200).json({
+            res.status(404).json({
                 ok: false,
                 msg: `The track with ID ${id} does not exist in the database.`
             });
@@ -220,8 +220,11 @@ const addTrack = async (req, res) => {
  */
 const deleteTrack = async (req, res) => {
 
-    const id = req.params.id; // Value of '_id' to query by.
-
+    /**
+     * The ID of the track to retrieve, obtained from the request parameters.
+     * @type {String}
+     */
+    const { id } = req.params;
 
     try {
 
@@ -229,9 +232,9 @@ const deleteTrack = async (req, res) => {
 
         if (!request) {
 
-            res.status(400).json({
+            res.status(404).json({
                 ok: false,
-                msg: `The track with ID ${id} could not be deleted from the database.`
+                msg: `The track with ID ${id} does not exist in the database and, therefore, cannot be deleted.`
             });
 
         } else {

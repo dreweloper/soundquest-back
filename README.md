@@ -1,7 +1,15 @@
 # SoundQuest | Back-end
 
-| ![Static Badge](https://img.shields.io/badge/Node.js-18.14.2-%23339933?style=flat-square&logo=nodedotjs) | ![Static Badge](https://img.shields.io/badge/Express-4.18.2-%23000000?style=flat-square&logo=express) | ![Static Badge](https://img.shields.io/badge/MongoDB%20Compass-1.39.3-%2347A248?style=flat-square&logo=mongodb) | ![Static Badge](https://img.shields.io/badge/Git-2.39.1-%23F05032?style=flat-square&logo=git) | ![Static Badge](https://img.shields.io/badge/Docker-20.10.21-%232496ED?style=flat-square&logo=docker) | ![Static Badge](https://img.shields.io/badge/Postman-10.17.5-%23FF6C37?style=flat-square&logo=postman) |
-|:---:|---|---|---|---|---|
+<div>
+    <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-18.14.2-%23339933?style=flat-square&logo=nodedotjs">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Express-4.18.2-%23000000?style=flat-square&logo=express">
+    <img alt="Static Badge" src="https://img.shields.io/badge/MongoDB%20Compass-1.39.3-%2347A248?style=flat-square&logo=mongodb">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Git-2.39.1-%23F05032?style=flat-square&logo=git">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Docker-20.10.21-%232496ED?style=flat-square&logo=docker">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Postman-10.17.5-%23FF6C37?style=flat-square&logo=postman">
+</div>
+
+<br>
 
 ¡Bienvenido a SoundQuest, tu explorador de música aleatoria basado en las playlists de Spotify!
 
@@ -53,19 +61,19 @@ npm run dev
 - **JSDoc:** (Versión 4.0.2) - Herramienta para la generación de documentación en formato JSDoc para código JavaScript.
 - **Postman:** (Versión 10.17.5) - Plataforma para probar y documentar APIs, utilizada para el desarrollo y prueba de la API de este proyecto.
 
-## Despliegue
-
-La aplicación se ha desplegado como un web service utilizando una imagen de Docker en la plataforma Render.
-
 ## Documentación
 
 ### Documentación API
 
-La documentación de la API está hecha en Postman. La puedes consultar en este [enlace](https://documenter.getpostman.com/view/26092515/2s9Y5crf4P).
+Consulta la [documentación en Postman](https://documenter.getpostman.com/view/26092515/2s9Y5crf4P) para acceder a información detallada sobre los endpoints de la API, incluyendo ejemplos de solicitudes, parámetros y respuestas.
 
 ### Documentación proyecto (JSDoc)
 
-(Github Pages)
+Para obtener una descripción técnica detallada de las funciones y componentes del Back-end, así como información sobre cómo utilizarlos, consulta la [documentación generada con JSDocs](https://documentacion-api-proyecto-increible.com/jsdocs).
+
+## Despliegue
+
+La aplicación se ha desplegado como *web service* utilizando una imagen de Docker en la plataforma Render.
 
 ---
 
