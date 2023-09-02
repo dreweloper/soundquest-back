@@ -3,26 +3,26 @@ const router = Router();
 
 const {
     getTracks,
-    getTracksCount,
     getTrackByID,
+    getTracksCount,
     addTrack,
     deleteTrack
 } = require('../controllers/tracksController');
 
 
-// Gets all tracks saved in MongoDB.
+/** Gets all the tracks from the database. */
 router.get('/tracks', getTracks);
 
-// Estimates the number of documents in the MongoDB 'tracks' collection.
-router.get('/tracks/counter', getTracksCount);
-
-// Gets track by 'track_id' from MongoDB.
+/** Gets a track by its Spotify ID from the database. */
 router.get('/track/:id', getTrackByID);
 
-// Add track to MongoDB.
+/** Gets the total count of the tracks stored in the database. */
+router.get('/tracks/counter', getTracksCount);
+
+/** Adds a new track document to the database. */
 router.post('/tracks', addTrack);
 
-// Delete track of MongoDB.
+/** Removes a track by its MongoDB `_id` from the database. */
 router.delete('/track/:id', deleteTrack);
 
 

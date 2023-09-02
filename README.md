@@ -41,8 +41,8 @@ npm install
 
 4. Crea el archivo `.env` en la raíz del proyecto y configura las siguientes variables de entorno:
 
-- `PORT`: Puerto al que escucha el servidor.
-- `URI_CONNECT`: La URI de conexión del despliegue de MongoDB.
+- `PORT`: puerto al que escucha el servidor.
+- `URI_CONNECT`: la URI de conexión del despliegue de MongoDB.
 
 5. Inicia la aplicación en tu entorno de desarrollo local.
 

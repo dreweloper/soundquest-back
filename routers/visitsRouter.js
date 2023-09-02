@@ -3,7 +3,7 @@ const router = Router();
 
 const { addVisit } = require('../controllers/visitsController');
 
-// Add visitor IP address location information to MongoDB.
+/** Adds a new visit record to the database. */
 router.post('/', addVisit);
 
 
