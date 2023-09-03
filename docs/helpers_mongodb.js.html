@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: helpers/mongodb.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,56 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: helpers/mongodb.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose');
 
+/**
+ * Establishes a connection to the 'soundquest' MongoDB database.
+ * 
+ * @async
+ * @function connection
+ * @returns {Promise&lt;Object>} A promise that resolves with an object when the database connection is successfully established.
+ * @throws {Error} If there is an error connecting to the database.
+ */
+const connection = async () => {
 
-    <h3> </h3>
+    try {
 
+        /**
+         * The database connection response object.
+         * @type {Promise&lt;Object>}
+         */
+        const response = await mongoose.connect(process.env.URI_CONNECT);
 
+        console.log('Connected to MongoDB.');
 
+        return response;
 
+    } catch (error) {
 
+        console.log(error);
 
+        return {
+            ok: false,
+            msg: 'Failed to connect to MongoDB.',
+            error
+        };
 
+    };
 
+};
 
-
-    
-
-
-
-
-
+module.exports = connection;</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,13 +1,12 @@
 const Visit = require('../models/visitModel');
 
 /**
- * Add a new visit record to the database.
- * @function addVisit
+ * Adds a new visit record to the database and sends a JSON response to the client.
+ * 
  * @async
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @returns {void}
- * @throws {Error} Throws an error if there's an issue during database operation or request processing.
+ * @function addVisit
+ * @param {Object} req - The request object containing information about the incoming HTTP request.
+ * @param {Object} res - The response object used to send back an HTTP response to the client.
  */
 const addVisit = async (req, res) => {
 
@@ -22,6 +21,10 @@ const addVisit = async (req, res) => {
 
     try {
         
+        /**
+         * The database operation response object.
+         * @type {Promise<Object>}
+         */
         const response = await newVisit.save();
 
         if(response) {
@@ -46,7 +49,7 @@ const addVisit = async (req, res) => {
 
         /**
          * Handles and logs errors that occur during the function's execution.
-         * @typedef {Object}
+         * @type {Object}
          * @property {Boolean} ok - Indicates if the request was successful (false).
          * @property {String} msg - A generic error message instructing the client to contact the administrator.
          * @property {Object} error - The error object caught during the catch block.

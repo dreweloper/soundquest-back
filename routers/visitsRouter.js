@@ -3,7 +3,7 @@ const router = Router();
 
 const { addVisit } = require('../controllers/visitsController');
 
-/** Adds a new visit record to the database. */
+// Adds a new visit record to the database.
 router.post('/', addVisit);
 
 
