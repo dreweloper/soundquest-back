@@ -4,8 +4,8 @@
     <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-18.14.2-%23339933?style=flat-square&logo=nodedotjs">
     <img alt="Static Badge" src="https://img.shields.io/badge/Express-4.18.2-%23000000?style=flat-square&logo=express">
     <img alt="Static Badge" src="https://img.shields.io/badge/MongoDB%20Compass-1.39.3-%2347A248?style=flat-square&logo=mongodb">
-    <img alt="Static Badge" src="https://img.shields.io/badge/Jest-29.6.4-%23C21325?style=flat-square&logo=jest">
     <img alt="Static Badge" src="https://img.shields.io/badge/Git-2.39.1-%23F05032?style=flat-square&logo=git">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Jest-29.6.4-%23C21325?style=flat-square&logo=jest">
     <img alt="Static Badge" src="https://img.shields.io/badge/Docker-20.10.21-%232496ED?style=flat-square&logo=docker">
     <img alt="Static Badge" src="https://img.shields.io/badge/Postman-10.17.5-%23FF6C37?style=flat-square&logo=postman">
 </div>
