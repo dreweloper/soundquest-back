@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "docs": "jsdoc -c jsdoc.json"
@@ -19,5 +19,8 @@
     "jsdoc": "^4.0.2",
     "mongoose": "^7.3.3",
     "node-fetch": "^2.6.11"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4"
   }
 }

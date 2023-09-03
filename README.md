@@ -1,9 +1,10 @@
-# SoundQuest | Back-end
+# SOUNDQUEST | Back-end
 
 <div>
     <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-18.14.2-%23339933?style=flat-square&logo=nodedotjs">
     <img alt="Static Badge" src="https://img.shields.io/badge/Express-4.18.2-%23000000?style=flat-square&logo=express">
     <img alt="Static Badge" src="https://img.shields.io/badge/MongoDB%20Compass-1.39.3-%2347A248?style=flat-square&logo=mongodb">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Jest-29.6.4-%23C21325?style=flat-square&logo=jest">
     <img alt="Static Badge" src="https://img.shields.io/badge/Git-2.39.1-%23F05032?style=flat-square&logo=git">
     <img alt="Static Badge" src="https://img.shields.io/badge/Docker-20.10.21-%232496ED?style=flat-square&logo=docker">
     <img alt="Static Badge" src="https://img.shields.io/badge/Postman-10.17.5-%23FF6C37?style=flat-square&logo=postman">
@@ -55,21 +56,22 @@ npm run dev
 - **Node.js:** (Versión 18.14.2) - Plataforma de tiempo de ejecución de JavaScript.
 - **Express:** (Versión 4.18.2) - Framework web para la construcción de aplicaciones web y APIs.
 - **Mongoose:** (Versión 7.3.3) - Librería de ODM (Mapeo Objeto-Documento) utilizada para interactuar con la base de datos MongoDB en Node.js.
+- **Jest:** (Versión 29.6.4) - Librería para testing de código JavaScript.
 - **Docker:** (Versión 20.10.21, build baeda1f) - Plataforma de contenedores para el despliegue de aplicaciones.
 - **Git:** (Versión 2.39.1) - Sistema de control de versiones utilizado para el seguimiento y gestión del código fuente de este proyecto.
-- **node-fetch:** (Versión 2.6.11) - Librería para realizar solicitudes HTTP desde Node.js. Instalo la versión 2 porque la más reciente no es compatible con CommonJS (sistema de módulos de JavaScript).
 - **JSDoc:** (Versión 4.0.2) - Herramienta para la generación de documentación en formato JSDoc para código JavaScript.
 - **Postman:** (Versión 10.17.5) - Plataforma para probar y documentar APIs, utilizada para el desarrollo y prueba de la API de este proyecto.
+- **node-fetch:** (Versión 2.6.11) - Librería para realizar solicitudes HTTP desde Node.js. Instalo la versión 2 porque la más reciente no es compatible con CommonJS (sistema de módulos de JavaScript).
 
 ## Documentación
 
-### Documentación API
+### Documentación de la API
 
 Consulta la [documentación en Postman](https://documenter.getpostman.com/view/26092515/2s9Y5crf4P) para acceder a información detallada sobre los endpoints de la API, incluyendo ejemplos de solicitudes, parámetros y respuestas.
 
-### Documentación proyecto (JSDoc)
+### Documentación del proyecto
 
-Para obtener una descripción técnica detallada de las funciones y componentes del Back-end, así como información sobre cómo utilizarlos, consulta la [documentación generada con JSDocs](https://documentacion-api-proyecto-increible.com/jsdocs).
+Para obtener una descripción técnica detallada de las funciones y componentes del Back-end, así como información sobre cómo utilizarlos, consulta la [documentación generada con JSDoc](https://dreweloper.github.io/soundquest-back/).
 
 ## Despliegue
 
