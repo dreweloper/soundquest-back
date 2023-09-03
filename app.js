@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 // MongoDB connection
 connection();
 
-// Cors middleware
+// CORS middleware
 app.use(cors());
 
 // Parse application/x-www-form-urlencoded
@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 // Parse application/json
 app.use(express.json());
 
-// ROUTES
 // Route to connect to the 'soundquest' database and interact with the 'tracks' collection in MongoDB.
 app.use('/api/v1', require('./routers/tracksRouter'));
 // Route to connect to the 'soundquest' database and interact with the 'visits' collection in MongoDB.

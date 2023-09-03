@@ -1,4 +1,32 @@
-const Track = require('../models/trackModel');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: tracksController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: tracksController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Track = require('../models/trackModel');
 
 /**
  * Handles and logs errors that occur during the function's execution.
@@ -9,21 +37,17 @@ const Track = require('../models/trackModel');
  */
 
 /**
- * Gets all the tracks from the database and sends a JSON response to the client.
- * 
- * @async
+ * The function fetches all documents in the 'tracks' collection from the MongoDB 'soundquest' database.
  * @function getTracks
- * @param {Object} req - The request object containing information about the incoming HTTP request.
- * @param {Object} res - The response object used to send back an HTTP response to the client.
+ * @async
+ * @param {Object} req Receives the request object.
+ * @param {Object} res Receives the response object.
+ * @returns {Promise}
  */
 const getTracks = async (req, res) => {
 
     try {
 
-        /**
-         * The database operation response object.
-         * @type {Promise<Object>}
-         */
         const response = await Track.find();
 
         if (response.length > 0) {
@@ -60,14 +84,14 @@ const getTracks = async (req, res) => {
 }; //!GETTRACKS
 
 /**
- * Gets a track by its Spotify ID from the database and sends a JSON response to the client.
- * 
+ * Retrieve a track from MongoDB based on the given track ID.
+ * @function getTrackByID
  * @async
- * @function getTrackById
- * @param {Object} req - The request object containing information about the incoming HTTP request.
- * @param {Object} res - The response object used to send back an HTTP response to the client.
+ * @param {Object} req The request object containing information about the incoming HTTP request.
+ * @param {Object} res The response object used to send back an HTTP response to the client.
+ * @returns {Promise&lt;void>} The function doesn't return a value directly but sends a response to the client.
  */
-const getTrackById = async (req, res) => {
+const getTrackByID = async (req, res) => {
 
     /**
      * The ID of the track to retrieve, obtained from the request parameters.
@@ -78,22 +102,25 @@ const getTrackById = async (req, res) => {
     try {
 
         /**
-         * The database operation response object.
-         * @type {Promise<Object>}
+         * Retrieve a track using its track ID.
+         * @function
+         * @async
+         * @param {String} id - The track ID to search for.
+         * @returns {Promise&lt;Array&lt;Object>>|Promise&lt;Array>} A promise that resolves to an array containing the retrieved track or an empty array if the track is not found.
          */
         const response = await Track.find(
-            { "track.track_id": id }, // Filter.
-            { "createdAt": 0, "updatedAt": 0, "__v": 0 } // Projection: fields excluded.
-        ).limit(1); // Options: returns the first document that matches the search criteria.
+            { "track.track_id": id },
+            { "createdAt": 0, "updatedAt": 0, "__v": 0 }
+        ).limit(1); // Returns the first document that matches the search criteria.
 
-        if (response.length == 0) {
+        if (response.length == 0) { // The track is not present in MongoDB.
 
             res.status(404).json({
                 ok: false,
                 msg: `The track with ID ${id} does not exist in the database.`
             });
 
-        } else {
+        } else { // The track is present in MongoDB.
 
             res.status(200).json({
                 ok: true,
@@ -120,20 +147,22 @@ const getTrackById = async (req, res) => {
 }; //!GETTRACKBYID
 
 /**
- * Gets the total count of the tracks stored in the database and sends a JSON response to the client.
- * 
- * @async
+ * Estimates the number of documents in the MongoDB 'tracks' collection.
  * @function getTracksCount
- * @param {Object} req - The request object containing information about the incoming HTTP request.
- * @param {Object} res - The response object used to send back an HTTP response to the client.
+ * @async
+ * @param {Object} req The request object containing information about the incoming HTTP request.
+ * @param {Object} res The response object used to send back an HTTP response to the client.
+ * @returns {Promise&lt;void>} The function doesn't return a value directly but sends a response to the client.
  */
 const getTracksCount = async (req, res) => {
 
     try {
 
         /**
-         * The database operation response object.
-         * @type {Promise<Object>}
+         * Estimates the number of documents in the MongoDB 'tracks' collection.
+         * @function
+         * @async
+         * @returns {Promise&lt;Number>}
          */
         const response = await Track.estimatedDocumentCount();
 
@@ -160,24 +189,20 @@ const getTracksCount = async (req, res) => {
 }; //!GETTRACKSCOUNT
 
 /**
- * Adds a new track document to the database and sends a JSON response to the client.
- * 
- * @async
+ * The function adds a new document with the data received through the 'body' object to the 'tracks' collection of the MongoDB 'soundquest' database.
  * @function addTrack
- * @param {Object} req - The request object containing information about the incoming HTTP request.
- * @param {Object} res - The response object used to send back an HTTP response to the client.
+ * @async
+ * @param {Object} req Receives the request object: body.
+ * @param {Object} res Receives the response object.
+ * @returns {Promise}
  */
 const addTrack = async (req, res) => {
 
-    // The 'req.body' object contains the properties of the 'Track' model.
-    const newTrack = new Track(req.body);
+    const newTrack = new Track(req.body); // 'req.body' receives the required properties of 'trackModel'.
+
 
     try {
 
-        /**
-         * The database operation response object.
-         * @type {Promise<Object>}
-         */
         const response = await newTrack.save();
 
         if (response) {
@@ -214,12 +239,12 @@ const addTrack = async (req, res) => {
 }; //!ADDTRACK
 
 /**
- * Removes a track by its MongoDB `_id` from the database and sends a JSON response to the client.
- * 
- * @async
+ * The function deletes by ID a document from the "tracks" collection of the MongoDB "soundquest" database.
  * @function deleteTrack
- * @param {Object} req - The request object containing information about the incoming HTTP request.
- * @param {Object} res - The response object used to send back an HTTP response to the client.
+ * @async
+ * @param {Object} req Receives the request object: params.
+ * @param {Object} res Receives the response object.
+ * @returns {Promise}
  */
 const deleteTrack = async (req, res) => {
 
@@ -231,13 +256,9 @@ const deleteTrack = async (req, res) => {
 
     try {
 
-        /**
-         * The database operation response object.
-         * @type {Promise<Object>}
-         */
-        const response = await Track.findByIdAndDelete(id);
+        const request = await Track.findByIdAndDelete(id);
 
-        if (!response) {
+        if (!request) {
 
             res.status(404).json({
                 ok: false,
@@ -248,7 +269,7 @@ const deleteTrack = async (req, res) => {
 
             res.status(200).json({
                 ok: true,
-                data: response
+                data: request
             });
 
         };
@@ -274,7 +295,29 @@ const deleteTrack = async (req, res) => {
 module.exports = {
     getTracks,
     getTracksCount,
-    getTrackById,
+    getTrackByID,
     addTrack,
     deleteTrack
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addTrack">addTrack</a></li><li><a href="global.html#addVisit">addVisit</a></li><li><a href="global.html#deleteTrack">deleteTrack</a></li><li><a href="global.html#getTrackByID">getTrackByID</a></li><li><a href="global.html#getTracks">getTracks</a></li><li><a href="global.html#getTracksCount">getTracksCount</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Sep 02 2023 13:24:59 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
