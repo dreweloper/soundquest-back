@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development nodemon app.js",
+    "test": "NODE_ENV=test jest --silent --detectOpenHandles",
+    "test:watch": "npm run test -- --watch",
     "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
