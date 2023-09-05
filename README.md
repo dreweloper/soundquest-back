@@ -79,6 +79,6 @@ The application has been deployed as a web service using a Docker image on the R
 
 ---
 
-## Contacto
+## Contact
 
 If you have any questions, suggestions or comments, you can contact me via e-mail: [dreweloper@gmail.com](mailto:dreweloper@gmail.com).
