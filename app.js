@@ -3,8 +3,10 @@ const cors = require('cors');
 const connection = require('./helpers/mongodb');
 require('dotenv').config();
 
-// Port config
+// Creates an Express application.
 const app = express();
+
+// Port config
 const port = process.env.PORT || 3000;
 
 // MongoDB connection
@@ -23,5 +25,7 @@ app.use('/api/v1', require('./routers/tracksRouter'));
 // Route to connect to the 'soundquest' database and interact with the 'visits' collection in MongoDB.
 app.use('/api/v1/visits', require('./routers/visitsRouter'));
 
+const server = app.listen(port, () => console.log(`Server started on port ${port}.`));
 
-app.listen(port, () => console.log(`Server started on port ${port}.`));
+ // Export `app` and `server` for testing purposes.
+module.exports = { app, server };

@@ -1,12 +1,13 @@
 {
   "name": "soundquest-back",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "NODE_ENV=test jest --silent --detectOpenHandles",
+    "test:watch": "npm run test -- --watch",
     "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
@@ -19,5 +20,12 @@
     "jsdoc": "^4.0.2",
     "mongoose": "^7.3.3",
     "node-fetch": "^2.6.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
+    "babel-jest": "^29.6.4",
+    "jest": "^29.6.4",
+    "supertest": "^6.3.3"
   }
 }
