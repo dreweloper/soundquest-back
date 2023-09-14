@@ -241,7 +241,7 @@ const deleteTrack = async (req, res) => {
 
             res.status(404).json({
                 ok: false,
-                msg: `The track with ID ${id} does not exist in the database and, therefore, cannot be deleted.`
+                msg: `The track with ID ${id} does not exist in the database.`
             });
 
         } else {

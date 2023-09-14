@@ -20,52 +20,21 @@ const { Schema, model } = require('mongoose');
 const trackSchema = new Schema({
 
     host: {
-        username: {
-            type: String,
-            required: true
-        },
-        profile_url: {
-            type: String,
-            required: true
-        }
+        username: { type: String, required: true },
+        profile_url: { type: String, required: true }
     },
     playlist: {
-        playlist_id: {
-            type: String,
-            required: true
-        },
-        playlist_url: {
-            type: String,
-            required: true
-        }
+        playlist_id: { type: String, required: true },
+        playlist_url: { type: String, required: true }
     },
     track: {
-        track_id: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        artist: {
-            type: String,
-            required: true
-        },
-        album: {
-            type: String,
-            required: true
-        },
-        artwork: {
-            type: String,
-            required: true
-        },
-        track_url: {
-            type: String,
-            required: true
-        }
+        track_id: { type: String, required: true },
+        name: { type: String, required: true },
+        artist: { type: String, required: true },
+        album: { type: String, required: true },
+        artwork: { type: String, required: true },
+        track_url: { type: String, required: true }
     }
-
 }, { timestamps: true });
 
 
