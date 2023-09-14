@@ -9,11 +9,11 @@ const app = express();
 // Port config
 const port = process.env.PORT || 3000;
 
-// MongoDB connection
-connection();
-
 // CORS middleware
 app.use(cors());
+
+// MongoDB connection
+connection();
 
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
@@ -27,5 +27,5 @@ app.use('/api/v1/visits', require('./routers/visitsRouter'));
 
 const server = app.listen(port, () => console.log(`Server started on port ${port}.`));
 
- // Export `app` and `server` for testing purposes.
+// Export `app` and `server` for testing purposes.
 module.exports = { app, server };

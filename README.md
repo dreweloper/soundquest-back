@@ -1,4 +1,4 @@
-# SOUNDQUEST | Back-end
+# SOUNDQUEST | Backend
 
 <div>
     <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-18.14.2-%23339933?style=flat-square&logo=nodedotjs">
@@ -16,7 +16,7 @@ Welcome to SoundQuest, your random music explorer based on Spotify playlists!
 
 Our web app utilizes a Spotify user ID to access its public playlists. It then randomly selects one playlist and displays a random song from that selection. This functionality is made possible through the collaborative efforts of our algorithm and the [Spotify Web API](https://developer.spotify.com/).
 
-Below, you will find all the information related to the Back-end of our application. If you want to check the Front-end repository, [click here](https://github.com/dreweloper/soundquest-front).
+Below, you will find all the information related to the Backend of our application. If you want to check the Frontend repository, [click here](https://github.com/dreweloper/soundquest-front).
 
 ---
 

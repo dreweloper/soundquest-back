@@ -10,13 +10,15 @@ const mongoose = require('mongoose');
  */
 const connection = async () => {
 
+    const connectionString = process.env.NODE_ENV != 'test' ? process.env.URI_CONNECT : process.env.URI_CONNECT_TEST;
+
     try {
 
         /**
          * The database connection response object.
          * @type {Promise<Object>}
          */
-        const response = await mongoose.connect(process.env.URI_CONNECT);
+        const response = await mongoose.connect(connectionString);
 
         console.log('Connected to MongoDB.');
 
